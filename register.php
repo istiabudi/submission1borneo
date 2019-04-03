@@ -41,18 +41,6 @@ $connectionInfo = array("UID" => "dicodingbpn@dicodingkotabpn", "pwd" => "B4l!kp
 $serverName = "tcp:dicodingkotabpn.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-
-
-//    $host = "<Nama server database Anda>";
-//    $user = "<Nama admin database Anda>";
-//    $pass = "<Password admin database Anda>";
-//    $db = "<Nama database Anda>";
-//    try {
-//        $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
-//        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-//    } catch(Exception $e) {
-//        echo "Failed: " . $e;
-    }
     if (isset($_POST['submit'])) {
         try {
             $name = $_POST['name'];
