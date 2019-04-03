@@ -35,32 +35,26 @@ catch (PDOException $e) {
     print("Error connecting to SQL Server.");
     die(print_r($e));
 }
-
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "dicodingbpn@dicodingkotabpn", "pwd" => "B4l!kp4p4n", "Database" => "dicodingbpn", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:dicodingkotabpn.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
-
-    if (isset($_POST['submit'])) {
-        try {
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $job = $_POST['job'];
-            $date = date("Y-m-d");
-            // Insert data
-            $sql_insert = "INSERT INTO Pendaftaran (name, email, job, date) 
-                        VALUES (?,?,?,?)";
-            $stmt = $conn->prepare($sql_insert);
-            $stmt->bindValue(1, $name);
-            $stmt->bindValue(2, $email);
-            $stmt->bindValue(3, $job);
-            $stmt->bindValue(4, $date);
-            $stmt->execute();
-        } catch(Exception $e) {
-            echo "Failed: " . $e;
-        }
-        echo "<h3>Your're registered!</h3>";
-    } else if (isset($_POST['load_data'])) {
+if (isset($_POST['submit'])) {
+   try {
+       $name = $_POST['name'];
+       $email = $_POST['email'];
+       $job = $_POST['job'];
+       $date = date("Y-m-d");
+       // Insert data
+       $sql_insert = "INSERT INTO Pendaftaran (name, email, job, date) 
+                     VALUES (?,?,?,?)";
+       $stmt = $conn->prepare($sql_insert);
+       $stmt->bindValue(1, $name);
+       $stmt->bindValue(2, $email);
+       $stmt->bindValue(3, $job);
+       $stmt->bindValue(4, $date);
+       $stmt->execute();
+   } catch(Exception $e) {
+       echo "Failed: " . $e;
+   }
+       echo "<h3>Your're registered!</h3>";
+   } else if (isset($_POST['load_data'])) {
         try {
             $sql_select = "SELECT * FROM Pendaftaran";
             $stmt = $conn->query($sql_select);
